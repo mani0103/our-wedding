@@ -25,7 +25,22 @@ class App extends Component {
   componentWillUnmount(){
     window.removeEventListener('scroll',this.hideBar);
   }
+
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
+  }
+
+
   render() {
+    const { isAuthenticated } = this.props.auth;
     return (
       <div>
         <div className="container-fluid bg-1 text-center">
@@ -52,6 +67,28 @@ class App extends Component {
                 <MenuItem divider />
                 <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
+              {
+                !isAuthenticated() && (
+                    <Button
+                      bsStyle="primary"
+                      className="btn-margin"
+                      onClick={this.login.bind(this)}
+                    >
+                      Log In
+                    </Button>
+                  )
+              }
+              {
+                isAuthenticated() && (
+                    <Button
+                      bsStyle="primary"
+                      className="btn-margin"
+                      onClick={this.logout.bind(this)}
+                    >
+                      Log Out
+                    </Button>
+                  )
+              }
             </Nav>
           </Navbar>
           <div className="scroll-test">
