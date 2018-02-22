@@ -69,30 +69,24 @@ class App extends Component {
               </NavDropdown>
               {
                 !isAuthenticated() && (
-                    <Button
-                      bsStyle="primary"
-                      className="btn-margin"
+                    <NavItem
                       onClick={this.login.bind(this)}
                     >
                       Log In
-                    </Button>
+                    </NavItem>
                   )
               }
               {
                 isAuthenticated() && (
-                    <Button
-                      bsStyle="primary"
-                      className="btn-margin"
+                    <NavItem
                       onClick={this.logout.bind(this)}
                     >
                       Log Out
-                    </Button>
+                    </NavItem>
                   )
               }
             </Nav>
           </Navbar>
-          <div className="scroll-test">
-          </div>
         </div>
       </div>   
 
