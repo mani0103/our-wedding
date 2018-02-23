@@ -6,7 +6,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'mani0103.eu.auth0.com',
     clientID: 'UtSmgoOMrkp6tb1epFn6bLN60DOFru6Z',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'https://silvi-and-attila.firebaseapp.com/callback',
     audience: 'https://mani0103.eu.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
