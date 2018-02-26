@@ -1,5 +1,8 @@
 import auth0 from 'auth0-js';
 import history from '../history';
+import firebaseui from 'firebaseui'
+import fire from '../fire'
+import firebase from 'firebase'
 
 export default class Auth {
 
@@ -42,7 +45,14 @@ export default class Auth {
   }
 
   login() {
-    this.auth0.authorize();
+    let ui = new firebaseui.auth.AuthUI(fire.auth());
+    ui.start('#firebaseui-auth-container', {
+      signInOptions : [
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+        }
+      ]
+    });
   }
 
   logout() {

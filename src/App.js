@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Navbar, NavItem, Nav, NavDropdown, MenuItem, Jumbotron, Button } from 'react-bootstrap';
-import Logo from './logo.svg'
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import './App.css';
+import LoginModal from './Login-dialog/LoginModal';
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={isHide:false};
+
     this.hideBar = this.hideBar.bind(this)
+    this.login = this.login.bind(this);
+    this.hideLogin = this.hideLogin.bind(this);
+
+    this.state = {
+      showModal: false,
+      isHide:false
+    };
   }
 
   hideBar(){
@@ -31,7 +38,11 @@ class App extends Component {
   }
 
   login() {
-    this.props.auth.login();
+    this.setState({ showModal: true });
+  }
+
+  hideLogin() {
+    this.setState({ showModal: false });
   }
 
   logout() {
@@ -70,7 +81,7 @@ class App extends Component {
               {
                 !isAuthenticated() && (
                     <NavItem
-                      onClick={this.login.bind(this)}
+                      onClick={this.login}
                     >
                       Log In
                     </NavItem>
@@ -88,6 +99,9 @@ class App extends Component {
             </Nav>
           </Navbar>
         </div>
+        <div id="firebaseui-auth-container"></div>
+
+        <LoginModal showModal={this.state.showModal} hideLogin={this.hideLogin} />
       </div>   
 
     );
