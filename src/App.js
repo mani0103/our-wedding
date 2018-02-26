@@ -1,47 +1,49 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import './App.css';
 import LoginModal from './Login-dialog/LoginModal';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.hideBar = this.hideBar.bind(this)
-    this.login = this.login.bind(this);
-    this.hideLogin = this.hideLogin.bind(this);
+    this.openloginDialog = this.openloginDialog.bind(this);
+    this.closeLoginDialog = this.closeLoginDialog.bind(this);
 
     this.state = {
       showModal: false,
-      isHide:false
+      navbarFixedToTop: false,
+      slectedNav: ""
     };
   }
 
-  hideBar(){
-    let {isHide} = this.state
+  hideBar() {
+    let { navbarFixedToTop } = this.state
     window.scrollY > 200 ?
-    !isHide && this.setState({isHide:true})
-    :
-    isHide && this.setState({isHide:false})
+      !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
+      :
+      navbarFixedToTop && this.setState({ navbarFixedToTop: false })
 
- }
-
-  componentDidMount(){
-    window.addEventListener('scroll',this.hideBar);
   }
-  componentWillUnmount(){
-    window.removeEventListener('scroll',this.hideBar);
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.hideBar);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hideBar);
   }
 
   goTo(route) {
     this.props.history.replace(`/${route}`)
   }
 
-  login() {
+  openloginDialog() {
     this.setState({ showModal: true });
   }
 
-  hideLogin() {
+  closeLoginDialog() {
     this.setState({ showModal: false });
   }
 
@@ -58,51 +60,53 @@ class App extends Component {
           <h3></h3>
         </div>
         <div className="Navigation">
-          <Navbar fixedTop={this.state.isHide} bsStyle="custom">
+          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom">
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="#home">Our-Wedding</a>
+                <Link to="/home">Our-Wedding</Link>
               </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-              <NavItem eventKey={1} href="#">
+              <NavItem href="/details">
                 Detials
               </NavItem>
-              <NavItem eventKey={2} href="#">
+              <NavItem href="/photos">
                 Photos
               </NavItem>
-              <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1}>Action</MenuItem>
-                <MenuItem eventKey={3.2}>Another action</MenuItem>
-                <MenuItem eventKey={3.3}>Something else here</MenuItem>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <MenuItem href="/3_1">Action</MenuItem>
+                <MenuItem href="/3_2">Another action</MenuItem>
+                <MenuItem href="/3_3">Something else here</MenuItem>
                 <MenuItem divider />
-                <MenuItem eventKey={3.4}>Separated link</MenuItem>
+                <MenuItem href="/3_4">Separated link</MenuItem>
               </NavDropdown>
               {
                 !isAuthenticated() && (
-                    <NavItem
-                      onClick={this.login}
-                    >
-                      Log In
+                  <NavItem
+                    onClick={this.openloginDialog}
+                  >
+                    Log In
                     </NavItem>
-                  )
+                )
               }
               {
                 isAuthenticated() && (
-                    <NavItem
-                      onClick={this.logout.bind(this)}
-                    >
-                      Log Out
+                  <NavItem
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
                     </NavItem>
-                  )
+                )
               }
             </Nav>
           </Navbar>
         </div>
-        <div id="firebaseui-auth-container"></div>
+        <div class="scroll-test">
+          {this.state.slectedNav}
+        </div>
 
-        <LoginModal showModal={this.state.showModal} hideLogin={this.hideLogin} />
-      </div>   
+        <LoginModal showModal={this.state.showModal} hideLogin={this.closeLoginDialog} />
+      </div>
 
     );
   }

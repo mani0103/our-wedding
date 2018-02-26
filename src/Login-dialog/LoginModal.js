@@ -2,33 +2,33 @@ import React, { Component } from 'react';
 import { Modal, OverlayTrigger, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 class LoginModal extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        
+
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
             email: "",
-            password: "",
-            value: ""
+            password: ""
         };
     }
 
-    
-  getValidationState() {
-    const length = this.state.email.length;
-    if (length > 10) return 'success';
-    else if (length > 5) return 'warning';
-    else if (length > 0) return 'error';
-    return null;
-  }
+    getValidationState() {
+        const length = this.state.email.length;
+        if (length > 10) return 'success';
+        else if (length > 5) return 'warning';
+        else if (length > 0) return 'error';
+        return null;
+    }
 
-  handleChange(e) {
-    this.setState({ email: e.target.value });
-  }
+    handleChange(propertyName, value) {
+        this.setState({
+            [propertyName]: value,
+        })
+    }
 
     render() {
-        return(
+        return (
             <Modal show={this.props.showModal} onHide={this.props.hideLogin}>
                 <Modal.Header closeButton>
                     <Modal.Title>Login</Modal.Title>
@@ -41,15 +41,22 @@ class LoginModal extends Component {
                             label="Email address"
                             placeholder="Enter email"
                             validationState={this.getValidationState()}
-                            onChange={this.handleChange}
+                            onChange={(e) => this.handleChange('email', e.target.value)}
                             value={this.state.email}
-                            />
-                        <FieldGroup id="formControlsPassword" label="Password" type="password" />
+                        />
+                        <FieldGroup
+                            id="formControlsPassword"
+                            placeholder="Enter password"
+                            label="Password"
+                            type="password"
+                            onChange={(e) => this.handleChange('password', e.target.value)}
+                            value={this.state.password}
+                        />
 
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.hideLogin}>Login</Button>
+                    <Button onClick={this.props.login}>Login</Button>
                     <Button onClick={this.props.hideLogin}>Close</Button>
                 </Modal.Footer>
             </Modal>
@@ -59,13 +66,13 @@ class LoginModal extends Component {
 
 function FieldGroup({ id, label, help, ...props }) {
     return (
-      <FormGroup controlId={id} validationState={props.validationState}>
-        <ControlLabel>{label}</ControlLabel>
-        <FormControl {...props} />
-        <FormControl.Feedback />
-        {help && <HelpBlock>{help}</HelpBlock>}
-      </FormGroup>
+        <FormGroup controlId={id} validationState={props.validationState}>
+            <ControlLabel>{label}</ControlLabel>
+            <FormControl {...props} />
+            <FormControl.Feedback />
+            {help && <HelpBlock>{help}</HelpBlock>}
+        </FormGroup>
     );
-  }
+}
 
 export default LoginModal;
