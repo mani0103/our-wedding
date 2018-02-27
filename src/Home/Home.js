@@ -5,18 +5,18 @@ class Home extends Component {
     this.props.auth.login();
   }
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const isAuthenticated = this.props.authed;
     return (
       <div className="container">
         {
-          isAuthenticated() && (
+          isAuthenticated && (
               <h4>
                 You are logged in!
               </h4>
             )
         }
         {
-          !isAuthenticated() && (
+          !isAuthenticated && (
               <h4>
                 You are not logged in! Please{' '}
                 <a

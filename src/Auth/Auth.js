@@ -1,17 +1,16 @@
-import { auth } from 'firebase'
+import fire from '../fire'
 
 export default class Auth {
-
+  constructor(isAuthenticated){
+    this.isAuthenticated = isAuthenticated
+    this.auth = fire.auth()
+  }
 
 
   login = (email, password) =>
-    auth.signInWithEmailAndPassword(email, password);
+    this.auth.signInWithEmailAndPassword(email, password);
 
   logout = () =>
-    auth.signOut();
-
-  isAuthenticated(){
-    return false
-  }
+    this.auth.signOut();
 
 }

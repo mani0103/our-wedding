@@ -1,111 +1,51 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import LoginModal from './Login-dialog/LoginModal';
+import Navigation from './Navigation/Navigation';
+import Home from './Home/Home';
+import Auth from './Auth/Auth';
+import fire from './fire'
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.hideBar = this.hideBar.bind(this)
-    this.openloginDialog = this.openloginDialog.bind(this);
-    this.closeLoginDialog = this.closeLoginDialog.bind(this);
-
     this.state = {
-      showModal: false,
-      navbarFixedToTop: false,
-      slectedNav: ""
-    };
+      authed: false,
+      loading: false,
+    }
   }
 
-  hideBar() {
-    let { navbarFixedToTop } = this.state
-    window.scrollY > 200 ?
-      !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
-      :
-      navbarFixedToTop && this.setState({ navbarFixedToTop: false })
-
+  componentDidMount () {
+    this.removeListener = fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authed: true,
+          loading: false,
+        })
+      } else {
+        this.setState({
+          authed: false,
+          loading: false
+        })
+      }
+    })
   }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.hideBar);
+  componentWillUnmount () {
+    this.removeListener()
   }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.hideBar);
-  }
-
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
-
-  openloginDialog() {
-    this.setState({ showModal: true });
-  }
-
-  closeLoginDialog() {
-    this.setState({ showModal: false });
-  }
-
-  logout() {
-    this.props.auth.logout();
-  }
-
 
   render() {
-    const { isAuthenticated } = this.props.auth;
     return (
       <div>
-        <div className="container-fluid bg-1 text-center">
-          <h3></h3>
-        </div>
-        <div className="Navigation">
-          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom">
-            <Navbar.Header>
-              <Navbar.Brand>
-                <Link to="/home">Our-Wedding</Link>
-              </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-              <NavItem href="/details">
-                Detials
-              </NavItem>
-              <NavItem href="/photos">
-                Photos
-              </NavItem>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <MenuItem href="/3_1">Action</MenuItem>
-                <MenuItem href="/3_2">Another action</MenuItem>
-                <MenuItem href="/3_3">Something else here</MenuItem>
-                <MenuItem divider />
-                <MenuItem href="/3_4">Separated link</MenuItem>
-              </NavDropdown>
-              {
-                !isAuthenticated() && (
-                  <NavItem
-                    onClick={this.openloginDialog}
-                  >
-                    Log In
-                    </NavItem>
-                )
-              }
-              {
-                isAuthenticated() && (
-                  <NavItem
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                    </NavItem>
-                )
-              }
-            </Nav>
-          </Navbar>
-        </div>
+        <Navigation isAuthenticated={this.state.authed} />
+        <Route path="/home" render={(props) => <Home authed={this.state.authed} {...props} />} />
+        <Route path="/details" render={(props) => <div>Details</div>} />
+        <Route path="/photos" render={(props) => <div>Photos</div>} />
         <div class="scroll-test">
-          {this.state.slectedNav}
+          blbla
         </div>
-
-        <LoginModal showModal={this.state.showModal} hideLogin={this.closeLoginDialog} />
       </div>
 
     );

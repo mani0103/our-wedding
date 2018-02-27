@@ -9,8 +9,8 @@ import history from './history';
 const auth = new Auth();
 
 
-
-export const makeMainRoutes = () => {
+/*
+export const oldmakeMainRoutes = () => {
   return (
     <Router history={history} component={App}>
       <div>
@@ -19,6 +19,14 @@ export const makeMainRoutes = () => {
         <Route path="/details" render={(props) => <div>Details</div>} />
         <Route path="/photos" render={(props) => <div>Photos</div>} />
       </div>
+    </Router>
+  );
+}
+*/
+export const makeMainRoutes = () => {
+  return (
+    <Router history={history}>
+      <App {...this.props}/>
     </Router>
   );
 }
