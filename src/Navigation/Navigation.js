@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom'
 import './Navigation.css';
 import LoginModal from '../Login-dialog/LoginModal';
 import fire from '../fire'
+import Auth from '../Auth/Auth'
+
+const auth = new Auth();
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
+
+    
 
     this.hideBar = this.hideBar.bind(this)
     this.openloginDialog = this.openloginDialog.bind(this);
@@ -49,7 +54,7 @@ class Navigation extends Component {
   }
 
   logout() {
-    fire.auth.logout();
+    auth.logout();
   }
 
 

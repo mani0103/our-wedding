@@ -39,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navigation isAuthenticated={this.state.authed} />
+        <Navigation authed={this.state.authed} />
         <Route path="/home" render={(props) => <Home authed={this.state.authed} {...props} />} />
         <Route path="/details" render={(props) => <div>Details</div>} />
         <Route path="/photos" render={(props) => <div>Photos</div>} />

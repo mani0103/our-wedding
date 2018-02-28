@@ -48,7 +48,7 @@ class LoginModal extends Component {
           .catch(error => {
             this.setState(() => ({ ...error }));
           });
-        //this.props.hideLogin();
+        this.props.hideLogin();
         event.preventDefault();
     }
 
