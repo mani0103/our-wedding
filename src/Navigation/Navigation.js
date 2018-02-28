@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 import LoginModal from '../Login-dialog/LoginModal';
-import fire from '../fire'
-import Auth from '../Auth/Auth'
+import fire from '../fire';
+import Auth from '../Auth/Auth';
+import LocalizedText from '../Translations/LocalizedText';
 
 const auth = new Auth();
 
@@ -66,23 +67,33 @@ class Navigation extends Component {
           <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid="true">
             <Navbar.Header>
               <Navbar.Brand>
-                <Link to="/home">Our-Wedding</Link>
+                <Link to="/home"><LocalizedText stringUN='ourWedding' lang='eng'/></Link>
               </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-              <NavItem href="/details">
-                Detials
+              <NavItem>
+                <Link to="/details">Detials</Link>
               </NavItem>
-              <NavItem href="/photos">
-                Photos
+              <NavItem>
+                <Link to="/photos">Photos</Link>
               </NavItem>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <MenuItem href="/3_1">Action</MenuItem>
-                <MenuItem href="/3_2">Another action</MenuItem>
-                <MenuItem href="/3_3">Something else here</MenuItem>
-                <MenuItem divider />
-                <MenuItem href="/3_4">Separated link</MenuItem>
-              </NavDropdown>
+              {isAuthenticated && (
+                <NavDropdown title="Guests" id="basic-nav-dropdown">
+                  <MenuItem>
+                    <Link to="/locations">Locations</Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link to="/accomodation">Accomodation</Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link to="/gifts">Gift Information</Link>
+                  </MenuItem>
+                  <MenuItem divider />
+                  <MenuItem>
+                    <Link to="/meals">Meal Options</Link>
+                  </MenuItem>
+                </NavDropdown>
+              )}
             </Nav>
             <Nav pullRight>
               {
