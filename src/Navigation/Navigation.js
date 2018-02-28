@@ -63,10 +63,9 @@ class Navigation extends Component {
     return (
       <div>
         <div className="container-fluid bg-1 text-center">
-          <h3>asdsa</h3>
         </div>
         <div className="Navigation">
-          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom">
+          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid="true">
             <Navbar.Header>
               <Navbar.Brand>
                 <Link to="/home">Our-Wedding</Link>
@@ -86,6 +85,8 @@ class Navigation extends Component {
                 <MenuItem divider />
                 <MenuItem href="/3_4">Separated link</MenuItem>
               </NavDropdown>
+            </Nav>
+            <Nav pullRight>
               {
                 !isAuthenticated && (
                   <NavItem
@@ -104,6 +105,11 @@ class Navigation extends Component {
                     </NavItem>
                 )
               }
+              <NavDropdown title="Language" id="basic-nav-dropdown">
+                <MenuItem href="/3_1">English</MenuItem>
+                <MenuItem href="/3_2">Magyar</MenuItem>
+                <MenuItem href="/3_3">Česky</MenuItem>
+              </NavDropdown>
             </Nav>
           </Navbar>
         </div>
