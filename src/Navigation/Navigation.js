@@ -27,7 +27,7 @@ class Navigation extends Component {
 
   hideBar() {
     let { navbarFixedToTop } = this.state
-    window.scrollY > 200 ?
+    window.scrollY > 600 ?
       !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
       :
       navbarFixedToTop && this.setState({ navbarFixedToTop: false })
@@ -62,8 +62,6 @@ class Navigation extends Component {
     const isAuthenticated = this.props.authed;
     return (
       <div>
-        <div className="container-fluid bg-1 text-center">
-        </div>
         <div className="Navigation">
           <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid="true">
             <Navbar.Header>

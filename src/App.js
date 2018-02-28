@@ -7,6 +7,7 @@ import Navigation from './Navigation/Navigation';
 import Home from './Home/Home';
 import Auth from './Auth/Auth';
 import fire from './fire'
+import FireImage from './Image/FireImage'
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +40,8 @@ class App extends Component {
   render() {
     
     return (
-      <div>
+      <div>       
+        <Route path="/" render={(props) => <FireImage src='header.png' />} />
         <Route path="/" render={(props) => <Navigation authed={this.state.authed} {...props} />} />
         <Route path="/home" render={(props) => <Home authed={this.state.authed} {...props} />} />
         <Route path="/details" render={(props) => <div>Details</div>} />
