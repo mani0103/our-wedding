@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import './App.css';
 import LoginModal from './Login-dialog/LoginModal';
 import Navigation from './Navigation/Navigation';
@@ -47,7 +47,8 @@ class App extends Component {
   render() {
     
     return (
-      <div>       
+      <div>
+        <Redirect exact from="/" to="/home" />       
         <Route path="/" render={(props) => <FireImage src='header.png' />} />
         <Route path="/" render={(props) => <Navigation authed={this.state.authed} changeLanguage={this.changeLanguage} lang={this.state.lang} {...props} />} />
         <Route path="/home" render={(props) => <Home authed={this.state.authed} lang={this.state.lang} {...props} />} />
