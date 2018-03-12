@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Monotype Corsiva';
+    src: url('../Fonts/Monotype Corsiva.ttf');
+}
+
+
+
+.container {
+    font-family: 'Monotype Corsiva'; 
+    text-align: center;
+    color: lightslategray;
+    font-size: 30px
+}
+
+h1,p,q{
+    padding: 80px;
+}
