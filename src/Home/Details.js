@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Details.css'
 import LocalizedText from '../Translations/LocalizedText';
 import { TRANSLATIONS } from '../Translations/Translations'
+import MapContainer from './Map'
 
 class Details extends Component {
 
@@ -16,6 +17,7 @@ class Details extends Component {
         <p>
           {TRANSLATIONS['detailslong'][this.props.lang].split('\n').map(line => <p className='noPadding'>{line}</p>)}
         </p>
+        <MapContainer />
       </div>
     );
   }
