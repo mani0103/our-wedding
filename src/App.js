@@ -12,10 +12,12 @@ import FireImage from './Image/FireImage'
 class App extends Component {
   constructor(props) {
     super(props);
+    this.changeLanguage = this.changeLanguage.bind(this);
     this.state = {
       authed: false,
       loading: false,
-    }
+      lang: 'hun'
+    };
   }
 
   componentDidMount () {
@@ -37,16 +39,20 @@ class App extends Component {
     this.removeListener()
   }
 
+  changeLanguage(lang){
+    this.setState({lang: lang})
+  }
+
   render() {
     
     return (
       <div>       
         <Route path="/" render={(props) => <FireImage src='header.png' />} />
-        <Route path="/" render={(props) => <Navigation authed={this.state.authed} {...props} />} />
+        <Route path="/" render={(props) => <Navigation authed={this.state.authed} changeLanguage={this.changeLanguage} lang={this.state.lang} {...props} />} />
         <Route path="/home" render={(props) => <Home authed={this.state.authed} {...props} />} />
         <Route path="/details" render={(props) => <div>Details</div>} />
         <Route path="/photos" render={(props) => <div>Photos</div>} />
-        <div class="scroll-test">
+        <div className="scroll-test">
           blbla
         </div>
       </div>

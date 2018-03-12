@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import './Navigation.css';
 import LoginModal from '../Login-dialog/LoginModal';
 import fire from '../fire';
 import Auth from '../Auth/Auth';
 import LocalizedText from '../Translations/LocalizedText';
+import { TRANSLATIONS } from '../Translations/Translations'
 
 const auth = new Auth();
 
@@ -18,6 +19,7 @@ class Navigation extends Component {
     this.hideBar = this.hideBar.bind(this)
     this.openloginDialog = this.openloginDialog.bind(this);
     this.closeLoginDialog = this.closeLoginDialog.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
       showModal: false,
@@ -58,40 +60,45 @@ class Navigation extends Component {
     auth.logout();
   }
 
+  handleSelect(key) {
+    console.log(key)
+  }
+
 
   render() {
     const isAuthenticated = this.props.authed;
     return (
       <div>
         <div className="Navigation">
-          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid="true">
-            <Navbar.Header>
-              <Navbar.Brand>
-                <Link to="/home"><LocalizedText stringUN='ourWedding' lang='eng'/></Link>
-              </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-              <NavItem>
-                <Link to="/details">Detials</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/photos">Photos</Link>
-              </NavItem>
+          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid={true}>
+            
+              <Navbar.Header>
+                  <Navbar.Brand>
+                    <a href="/home"><LocalizedText stringUN='ourWedding' {...this.props}/></a>
+                  </Navbar.Brand>
+              </Navbar.Header>
+            
+            <Nav onSelect={k => this.handleSelect(k)}>
+              <LinkContainer to="/details">
+                <NavItem><LocalizedText stringUN='details' {...this.props}/></NavItem>
+              </LinkContainer>
+              <LinkContainer to="/photos">
+                <NavItem><LocalizedText stringUN='photos' {...this.props}/></NavItem>
+              </LinkContainer>  
               {isAuthenticated && (
-                <NavDropdown title="Guests" id="basic-nav-dropdown">
-                  <MenuItem>
-                    <Link to="/locations">Locations</Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link to="/accomodation">Accomodation</Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link to="/gifts">Gift Information</Link>
-                  </MenuItem>
-                  <MenuItem divider />
-                  <MenuItem>
-                    <Link to="/meals">Meal Options</Link>
-                  </MenuItem>
+                <NavDropdown title={TRANSLATIONS['guests'][this.props.lang]} id="basic-nav-dropdown">
+                  <LinkContainer to="/details">
+                    <MenuItem><LocalizedText stringUN='locations' {...this.props}/></MenuItem>
+                  </LinkContainer>
+                  <LinkContainer to="/accomodation">
+                    <MenuItem><LocalizedText stringUN='accomodation' {...this.props}/></MenuItem>
+                  </LinkContainer> 
+                  <LinkContainer to="/gifts">
+                    <MenuItem><LocalizedText stringUN='gift-information' {...this.props}/></MenuItem>
+                  </LinkContainer> 
+                  <LinkContainer to="/meals">
+                    <MenuItem><LocalizedText stringUN='meal-options' {...this.props}/></MenuItem>
+                  </LinkContainer>
                 </NavDropdown>
               )}
             </Nav>
@@ -101,7 +108,7 @@ class Navigation extends Component {
                   <NavItem
                     onClick={this.openloginDialog}
                   >
-                    Log In
+                    <LocalizedText stringUN='login' {...this.props}/>
                     </NavItem>
                 )
               }
@@ -110,14 +117,14 @@ class Navigation extends Component {
                   <NavItem
                     onClick={this.logout.bind(this)}
                   >
-                    Log Out
+                    <LocalizedText stringUN='logout' {...this.props}/>
                     </NavItem>
                 )
               }
-              <NavDropdown title="Language" id="basic-nav-dropdown">
-                <MenuItem href="/3_1">English</MenuItem>
-                <MenuItem href="/3_2">Magyar</MenuItem>
-                <MenuItem href="/3_3">Česky</MenuItem>
+              <NavDropdown title={TRANSLATIONS['language'][this.props.lang]} id="basic-nav-dropdown" onSelect={(key) => this.props.changeLanguage(key)}>
+                <MenuItem eventKey={"eng"} >English</MenuItem>
+                <MenuItem eventKey={"hun"} >Magyar</MenuItem>
+                <MenuItem eventKey={"cz"} >Česky</MenuItem>
               </NavDropdown>
             </Nav>
           </Navbar>

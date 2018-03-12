@@ -13,7 +13,7 @@ class FireImage extends Component {
     render(){
         return (
             //<div>{this.imageRef}</div>
-            <Image bsClass="fire-image" responsive="true" src="https://firebasestorage.googleapis.com/v0/b/silvi-and-attila.appspot.com/o/header.png?alt=media&token=d0909dbc-c3ec-42a0-8142-93fb1564bb9d" />
+            <Image bsClass="fire-image" responsive={true} src="https://firebasestorage.googleapis.com/v0/b/silvi-and-attila.appspot.com/o/header.png?alt=media&token=d0909dbc-c3ec-42a0-8142-93fb1564bb9d" />
         )
     }
 }
