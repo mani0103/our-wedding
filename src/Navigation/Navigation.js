@@ -19,7 +19,6 @@ class Navigation extends Component {
     this.hideBar = this.hideBar.bind(this)
     this.openloginDialog = this.openloginDialog.bind(this);
     this.closeLoginDialog = this.closeLoginDialog.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
       showModal: false,
@@ -30,7 +29,7 @@ class Navigation extends Component {
 
   hideBar() {
     let { navbarFixedToTop } = this.state
-    window.scrollY > 600 ?
+    window.scrollY > 200 ?
       !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
       :
       navbarFixedToTop && this.setState({ navbarFixedToTop: false })
@@ -60,25 +59,17 @@ class Navigation extends Component {
     auth.logout();
   }
 
-  handleSelect(key) {
-    console.log(key)
-  }
-
 
   render() {
     const isAuthenticated = this.props.authed;
     return (
       <div>
         <div className="Navigation">
-          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid={true}>
-            
-              <Navbar.Header>
-                  <Navbar.Brand>
-                    <a href="/home"><LocalizedText stringUN='ourWedding' {...this.props}/></a>
-                  </Navbar.Brand>
-              </Navbar.Header>
-            
-            <Nav onSelect={k => this.handleSelect(k)}>
+          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid={true}>           
+            <Nav>
+              <LinkContainer to="/home">
+                <NavItem><LocalizedText stringUN='ourWedding' {...this.props}/></NavItem>
+              </LinkContainer>
               <LinkContainer to="/details">
                 <NavItem><LocalizedText stringUN='details' {...this.props}/></NavItem>
               </LinkContainer>
@@ -121,7 +112,7 @@ class Navigation extends Component {
                     </NavItem>
                 )
               }
-              <NavDropdown title={TRANSLATIONS['language'][this.props.lang]} id="basic-nav-dropdown" onSelect={(key) => this.props.changeLanguage(key)}>
+              <NavDropdown title={`${TRANSLATIONS['language'][this.props.lang]}: ${this.props.lang}`} id="basic-nav-dropdown" onSelect={(key) => this.props.changeLanguage(key)}>
                 <MenuItem eventKey={"eng"} >English</MenuItem>
                 <MenuItem eventKey={"hun"} >Magyar</MenuItem>
                 <MenuItem eventKey={"cz"} >Česky</MenuItem>

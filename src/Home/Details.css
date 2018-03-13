@@ -9,12 +9,18 @@
     font-family: 'Monotype Corsiva'; 
     text-align: center;
     color: lightslategray;
-    font-size: 30px
+    font-size: 30px;
+    white-space: pre-line;
+    margin: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+    padding: 50px 0px 0px 0px;
+    width: 100%
 }
 
-h1,p,q{
-    padding: 80px;
+.google-maps-container > div > div {
+    height: 400px
 }
+
 p.noPadding {
     padding: 0px;
 }

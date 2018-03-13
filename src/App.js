@@ -6,6 +6,7 @@ import LoginModal from './Login-dialog/LoginModal';
 import Navigation from './Navigation/Navigation';
 import Home from './Home/Home';
 import Details from './Home/Details';
+import PhotoGallery from './Home/Photos';
 import Auth from './Auth/Auth';
 import fire from './fire'
 import FireImage from './Image/FireImage'
@@ -45,17 +46,14 @@ class App extends Component {
   }
 
   render() {
-    
     return (
       <div>
-        <Redirect exact from="/" to="/home" />       
+        <Route exact path="/" render={() => (<Redirect to="/home" />)} />  
         <Route path="/" render={(props) => <FireImage src='header.png' />} />
         <Route path="/" render={(props) => <Navigation authed={this.state.authed} changeLanguage={this.changeLanguage} lang={this.state.lang} {...props} />} />
         <Route path="/home" render={(props) => <Home authed={this.state.authed} lang={this.state.lang} {...props} />} />
         <Route path="/details" render={(props) => <Details authed={this.state.authed} lang={this.state.lang} {...props} />} />
-        <Route path="/photos" render={(props) => <div>Photos</div>} />
-        <div className="scroll-test">
-        </div>
+        <Route path="/photos" render={(props) => <PhotoGallery/>} />
       </div>
 
     );

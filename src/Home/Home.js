@@ -14,11 +14,11 @@ class Home extends Component {
           Silvia & Attila
         </h1>
         <p>
-          {TRANSLATIONS['ertesito'][this.props.lang]}
+          <LocalizedText stringUN='ertesito' {...this.props}/>
         </p>
-        <q>
-          {TRANSLATIONS['idezet'][this.props.lang]}
-        </q>
+        <p>
+          <LocalizedText stringUN='idezet' {...this.props}/>
+        </p>
       </div>
     );
   }

@@ -6,13 +6,13 @@ class LocalizedText extends Component {
   
   render() {
     return(
-      <div>
+      <span>
         { 
           TRANSLATIONS[this.props.stringUN] && TRANSLATIONS[this.props.stringUN][this.props.lang] ? 
           TRANSLATIONS[this.props.stringUN][this.props.lang] : 
           this.props.stringUN
         }
-      </div>
+      </span>
     )
   }
 }

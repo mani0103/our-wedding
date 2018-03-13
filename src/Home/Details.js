@@ -11,13 +11,16 @@ class Details extends Component {
     const isAuthenticated = this.props.authed;
     return (
       <div className="container">
-        <h1>
-          <LocalizedText stringUN='details' {...this.props}/>
-        </h1>
-        <p>
-          {TRANSLATIONS['detailslong'][this.props.lang].split('\n').map(line => <p className='noPadding'>{line}</p>)}
-        </p>
-        <MapContainer />
+        {TRANSLATIONS['detailslong'][this.props.lang].split('\n').map(line => {
+            return (
+              line.match(/\{.+\}/g) ?
+              <div className='google-maps-container' key={line.id}>
+                <MapContainer pos={JSON.parse(line.trim())} />
+              </div>:
+              <p className='noPadding' key={line.id}>{line}</p>
+            )
+          }
+        )}
       </div>
     );
   }
