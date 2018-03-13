@@ -6,14 +6,22 @@ import './FireImage.css'
 class FireImage extends Component {
     constructor(props) {
         super(props);
-        //this.storageRef = fire.storage().ref();
-        //this.imageRef = this.storageRef.child(this.props.src);
+        this.state = {
+            url: ''
+        }
+
+    }
+    componentWillMount(){
+        const storage = fire.storage();
+        const storageRef = storage.ref();
+        const imagesRef = storageRef.child(this.props.src);
+        imagesRef.getDownloadURL().then(url => this.setState({url: url}))
     }
 
     render(){
         return (
             //<div>{this.imageRef}</div>
-            <Image bsClass="fire-image" responsive={true} src="https://firebasestorage.googleapis.com/v0/b/silvi-and-attila.appspot.com/o/header.png?alt=media&token=b6ea65b4-eb57-49ce-b1b4-8da63e6c6dce" />
+            <Image bsClass="fire-image" responsive={true} src={this.state.url} />
         )
     }
 }

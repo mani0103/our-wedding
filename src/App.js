@@ -10,6 +10,7 @@ import PhotoGallery from './Home/Photos';
 import Auth from './Auth/Auth';
 import fire from './fire'
 import FireImage from './Image/FireImage'
+import header from './Resources/header.png'
 
 class App extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" render={() => (<Redirect to="/home" />)} />  
-        <Route path="/" render={(props) => <FireImage src='header.png' />} />
+        <Route path="/" render={(props) => <div className='header-image'/>} />
         <Route path="/" render={(props) => <Navigation authed={this.state.authed} changeLanguage={this.changeLanguage} lang={this.state.lang} {...props} />} />
         <Route path="/home" render={(props) => <Home authed={this.state.authed} lang={this.state.lang} {...props} />} />
         <Route path="/details" render={(props) => <Details authed={this.state.authed} lang={this.state.lang} {...props} />} />

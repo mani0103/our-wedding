@@ -29,7 +29,7 @@ class Navigation extends Component {
 
   hideBar() {
     let { navbarFixedToTop } = this.state
-    window.scrollY > 200 ?
+    window.scrollY > 300 ?
       !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
       :
       navbarFixedToTop && this.setState({ navbarFixedToTop: false })
