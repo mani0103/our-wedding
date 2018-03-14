@@ -11,7 +11,7 @@ class Details extends Component {
     const isAuthenticated = this.props.authed;
     return (
       <div className="container">
-        {TRANSLATIONS['detailslong'][this.props.lang].split('\n').map(line => {
+        {this.props.text.split('\n').map(line => {
             return (
               line.match(/\{.+\}/g) ?
               <div className='google-maps-container' key={line.id}>

@@ -14,7 +14,7 @@
   }
   
   .navbar-custom{
-    background-color: bisque;
+    background-color: rgb(156, 206, 206);
     font-family: 'Monotype Corsiva';
     font-size: 20px;
   }
@@ -26,4 +26,8 @@
 }
 .dropdown-menu > li > a {
   color: lightslategray;
+}
+
+a {
+  color: rgb(50, 109, 163)
 }

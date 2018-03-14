@@ -27,6 +27,21 @@ export const TRANSLATIONS = {
         hun: `Helyszínek`,
         cz: `Umístění`
     },
+    accomodation: {
+        eng: `Accomodation`,
+        hun: `Szálláshelyek`,
+        cz: `Ubytování`
+    },
+    'gift-information': {
+        eng: `Gift Information`,
+        hun: `Ajándék`,
+        cz: `Dárek`
+    },
+    'meal-options': {
+        eng: `Meal Options`,
+        hun: `Vacsora lehetőségek`,
+        cz: `???`
+    },
     language: {
         eng: `Language`,
         hun: `Nyelv`,
@@ -81,7 +96,31 @@ export const TRANSLATIONS = {
         Focení skupinek: s rodiči, s rodinami, s příteli a známými zvlášť \n
         18.00- svatební party v kulturním domě obce Pribeta \n
         {"lat": 47.900891,"lng": 18.313930,"name": "Kulturní dom obce Pribeta: Školská 628/127, Pribeta"}`
-    }
+    },
+    gifts: {
+        eng: `TODO`,
+        hun: `Számunkra a legnagyobb ajándék, 
+        hogy megoszthatjuk Önokkel életünk e fontos pillanatát. 
+        Ha mégis ezen kívül nászajándékon törné bárki a fejét, 
+        kérjük a ránk szánt összeget ne költse semmi másra, 
+        mi szívesen befektetjük egy közös házba.`,
+        cz: `Pro nás je největším dárkem, 
+        že můžeme spolu s Vámi zažít tento důležitý okamžik našeho života. 
+        Kdyby jste i kromě toho nás chtěli něčím obdarovat, 
+        prosím veďte, že vše vybavení do domácnosti už máme, 
+        a příspěvek v jakékoli výši bychom rádi využili na společný domeček.`
+    },
+    locationslong: {
+        eng: `TODO`,
+        hun: `Szent Andás bazilika: Nádor u. 8 , Komárno
+        {"lat": 47.7572284,"lng": 18.1267641, "name": "Szent Andás bazilika: Nádor u. 8 , Komárno"}
+        Perbetei kultúrház: Iskola u. 628/127, Pribeta
+        {"lat": 47.900891,"lng": 18.313930, "name": "Perbetei kultúrház: Iskola u. 628/127, Perbete"}`,
+        cz: `bazilika svatého Ondřeje: Palatínova 8 , Komárno
+        {"lat": 47.7572284,"lng": 18.1267641,"name": "bazilika svatého Ondřeje: Palatínova 8 , Komárno"}\n
+        Kulturní dom obce Pribeta: Školská 628/127, Pribeta
+        {"lat": 47.900891,"lng": 18.313930,"name": "Kulturní dom obce Pribeta: Školská 628/127, Pribeta"}`
+    },
 
     
 

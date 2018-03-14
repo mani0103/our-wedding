@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Gallery from 'react-grid-gallery';
-
+/*
 const IMAGES =
 [{
         src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
@@ -23,13 +23,14 @@ const IMAGES =
         thumbnailWidth: 320,
         thumbnailHeight: 212
 }]
-
+*/
 class PhotoGallery extends Component {
     constructor(props) {
       super(props);
     }
 
     render() {
+        const IMAGES = this.props.urls.map(url => {return {src: url, thumbnail: url}});
         return (
             <Gallery images={IMAGES}/>
         )

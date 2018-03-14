@@ -78,7 +78,7 @@ class Navigation extends Component {
               </LinkContainer>  
               {isAuthenticated && (
                 <NavDropdown title={TRANSLATIONS['guests'][this.props.lang]} id="basic-nav-dropdown">
-                  <LinkContainer to="/details">
+                  <LinkContainer to="/locations">
                     <MenuItem><LocalizedText stringUN='locations' {...this.props}/></MenuItem>
                   </LinkContainer>
                   <LinkContainer to="/accomodation">
@@ -113,7 +113,7 @@ class Navigation extends Component {
                 )
               }
               <NavDropdown title={`${TRANSLATIONS['language'][this.props.lang]}: ${this.props.lang}`} id="basic-nav-dropdown" onSelect={(key) => this.props.changeLanguage(key)}>
-                <MenuItem eventKey={"eng"} >English</MenuItem>
+                {/*<MenuItem eventKey={"eng"} >English</MenuItem>*/}
                 <MenuItem eventKey={"hun"} >Magyar</MenuItem>
                 <MenuItem eventKey={"cz"} >Česky</MenuItem>
               </NavDropdown>
