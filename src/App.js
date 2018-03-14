@@ -7,6 +7,7 @@ import Navigation from './Navigation/Navigation';
 import Gifts from './Home/Gifts';
 import Home from './Home/Home';
 import Details from './Home/Details';
+import Meals from './Home/Meals'
 import PhotoGallery from './Home/Photos';
 import Auth from './Auth/Auth';
 import fire from './fire'
@@ -77,6 +78,7 @@ class App extends Component {
           <div>
             <Route path="/locations" render={(props) => <Details authed={this.state.authed} text={TRANSLATIONS['locationslong'][this.state.lang]} {...props} />} />
             <Route path="/gifts" render={(props) => <Gifts authed={this.state.authed} lang={this.state.lang} {...props} />} />
+            <Route path="/meals" render={(props) => <Meals authed={this.state.authed} lang={this.state.lang} {...props} />} />
           </div>
         }
         {!isAuthenticated &&
