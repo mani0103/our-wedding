@@ -29,6 +29,9 @@ const IMAGES =
 class PhotoGallery extends Component {
     constructor(props) {
       super(props);
+      this.state = {
+        pics = []
+      };
     }
 
     handleFileSelect(evt) {
@@ -42,7 +45,7 @@ class PhotoGallery extends Component {
         const IMAGES = Object.values(this.props.urls);
         return (
             [
-                <input type="file" id="files" name="files[]" multiple onchange={(evt) => console.log(evt)} />,
+                <input type="file" id="files" name="files[]" multiple onChange={this.handleFileSelect} />,
                 <label for="files">Choose a file</label>,
                 <Gallery images={IMAGES}/>,  
             ]

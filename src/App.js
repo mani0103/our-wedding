@@ -36,8 +36,8 @@ class App extends Component {
 
   componentDidMount () {
 
-    storageRef.child('1.jpg').getMetadata()
-          .then(data => console.log(data))
+//    storageRef.child('1.jpg').getMetadata()
+//          .then(data => console.log(data))
 
     pictureRef.on('value',(photos) => this.setState({photoUrls: photos.val()}))
 
