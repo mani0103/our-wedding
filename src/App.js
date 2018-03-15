@@ -17,7 +17,8 @@ import { TRANSLATIONS } from './Translations/Translations'
 
 const storage = fire.storage();
 const storageRef = storage.ref();
-const photoNames = ['1.jpg','2.jpg','3.jpg']
+const db = fire.database();
+const pictureRef = db.ref('pictures/')
 
 
 
@@ -35,12 +36,10 @@ class App extends Component {
 
   componentDidMount () {
 
-    Promise.all(
-      photoNames.map(name => 
-        storageRef.child(name).getDownloadURL()))
-          .then(urls => this.setState({photoUrls: urls}
-      )
-    )
+    storageRef.child('1.jpg').getMetadata()
+          .then(data => console.log(data))
+
+    pictureRef.on('value',(photos) => this.setState({photoUrls: photos.val()}))
 
     this.removeListener = fire.auth().onAuthStateChanged((user) => {
       if (user) {

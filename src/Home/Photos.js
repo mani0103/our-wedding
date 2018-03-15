@@ -24,15 +24,29 @@ const IMAGES =
         thumbnailHeight: 212
 }]
 */
+
+
 class PhotoGallery extends Component {
     constructor(props) {
       super(props);
     }
 
+    handleFileSelect(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+          console.log(f)
+        }
+    }
+
     render() {
-        const IMAGES = this.props.urls.map(url => {return {src: url, thumbnail: url}});
+        const IMAGES = Object.values(this.props.urls);
         return (
-            <Gallery images={IMAGES}/>
+            [
+                <input type="file" id="files" name="files[]" multiple onchange={(evt) => console.log(evt)} />,
+                <label for="files">Choose a file</label>,
+                <Gallery images={IMAGES}/>,  
+            ]
+            
         )
     }
 }  
