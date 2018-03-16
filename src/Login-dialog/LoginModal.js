@@ -72,7 +72,6 @@ class LoginModal extends Component {
                                 type="email"
                                 label="Email address"
                                 placeholder="Enter email"
-                                validationState={this.getValidationState()}
                                 onChange={(e) => this.handleChange('email', e.target.value)}
                                 value={this.state.email}
                             />
@@ -104,8 +103,6 @@ function FieldGroup({ id, label, help, ...props }) {
         <FormGroup controlId={id} validationState={props.validationState}>
             <ControlLabel>{label}</ControlLabel>
             <FormControl {...props} />
-            <FormControl.Feedback />
-            {help && <HelpBlock>{help}</HelpBlock>}
         </FormGroup>
     );
 }
