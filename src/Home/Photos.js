@@ -67,7 +67,9 @@ class PhotoGallery extends Component {
     }
 
     onSelectImage (index, image) {
-        this.props.selectImage(image.un);
+        if(image.uid === this.props.user.uid){
+            this.props.selectImage(image.un);
+        }  
     }
 
     deselectAll() {
@@ -82,7 +84,7 @@ class PhotoGallery extends Component {
         const IMAGES = Object.values({...this.props.photos});
         const isSomethingSelected = IMAGES.some((p) => p.hasOwnProperty("isSelected") && p.isSelected === true)
         
-        console.log(IMAGES)
+        //console.log(IMAGES)
         return (
             <div>
                 { this.props.authed &&
