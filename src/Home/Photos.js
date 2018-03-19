@@ -28,6 +28,8 @@ const IMAGES =
 */
 const storage = fire.storage();
 const storageRef = storage.ref();
+const db = fire.database();
+const dbref = db.ref();
 
 class PhotoGallery extends Component {
     constructor(props) {
@@ -55,8 +57,41 @@ class PhotoGallery extends Component {
         })
     }
 
-    async handleFileSelect(evt) {
-        await this.setState( { pics:  [...evt.target.files].map(file => {return {file: file, uploaded: 0}})} ); 
+    getImageDetails(file) {
+        return new Promise((resolve, reject) =>{
+            let fr = new FileReader;
+            fr.onload = () => {
+                let image = new Image;
+                image.onload = () => {
+                    resolve({
+                        width: image.width, 
+                        height: image.height
+                    })
+                }
+                image.onerror = () => {
+                    return reject(this);
+                };
+                image.src = fr.result;
+
+            }
+            fr.onerror = () => {
+                return reject(this);
+            };
+            fr.readAsDataURL(file);
+            }
+        )
+    }
+
+    async handleFileSelect(evt) { 
+        let images = await Promise.all(
+            [...evt.target.files].map(async (file) => {
+                let imageData = await this.getImageDetails(file);
+                return {file: file, uploaded: 0, ...imageData}
+            }) 
+        ) 
+        this.setState( { 
+            pics: images  
+        });
         console.log(this.state.pics)
         this.setState( { uploadButtonDisabled:  false} )
     }
@@ -66,7 +101,9 @@ class PhotoGallery extends Component {
         this.state.pics.map( (pic, i) => {
             const file = pic.file;
             const metadata = {
-                contentType: file.type
+                contentType: file.type,
+                width: pic.width,
+                height: pic.height
             };
 
             console.log(i)
@@ -81,12 +118,12 @@ class PhotoGallery extends Component {
                 this.setState({pics: nextState});
                 console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
-                case 'paused': 
-                    console.log('Upload is paused');
-                    break;
-                case 'running':
-                    console.log('Upload is running');
-                    break;
+                    case 'paused': 
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        console.log('Upload is running');
+                        break;
                 }
             }, (error) => {
             switch (error.code) {
@@ -98,7 +135,17 @@ class PhotoGallery extends Component {
                 break;
             }
             }, () => {
-                console.log(uploadTask.snapshot.downloadURL);
+                let url = uploadTask.snapshot.downloadURL;
+                let newPicKey = dbref.child('pictures').push().key;
+                var updates = {};
+                updates[`/pictures/${newPicKey}`] = {
+                    src: url,
+                    thumbnail: url,
+                    caption: newPicKey,
+                    width: pic.width,
+                    height: pic.height
+                };
+                dbref.update(updates);
             });
         })
         
@@ -118,7 +165,7 @@ class PhotoGallery extends Component {
                     <Modal.Body>
                         <input type="file" id="files" name="files[]" multiple onChange={this.handleFileSelect} />
                         {/*<label for="files">Choose a file</label>*/}
-                        {this.state.pics.map(pic => <div key={pic.key}>{pic.file.name}: {pic.uploaded}% Uploaded</div>)}
+                        {this.state.pics.map(pic => <div key={pic.key}>{pic.file.name}: {pic.uploaded.toFixed()}% Uploaded</div>)}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.uploadToFirebase} disabled={this.state.uploadButtonDisabled} >Upload</Button>
