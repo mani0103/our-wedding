@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, OverlayTrigger, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
+import { Modal, OverlayTrigger, FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert } from 'react-bootstrap';
 import Auth from '../Auth/Auth'
 
 const auth = new Auth();
@@ -20,13 +20,6 @@ class LoginModal extends Component {
         this.state = { ...INITIAL_STATE };
     }
 
-    getValidationState() {
-        const length = this.state.email.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
-        else if (length > 0) return 'error';
-        return null;
-    }
 
     handleChange(propertyName, value) {
         this.setState({
@@ -44,11 +37,12 @@ class LoginModal extends Component {
         auth.login(email, password)
           .then(authUser => {
             this.setState(() => ({ ...INITIAL_STATE }));
+            this.props.hideLogin();
           })
           .catch(error => {
-            this.setState(() => ({ ...error }));
+            //console.log(error.message)
+            this.setState(() => ({ error: error.message}));
           });
-        this.props.hideLogin();
         event.preventDefault();
     }
 
@@ -66,6 +60,11 @@ class LoginModal extends Component {
                         <Modal.Title>Login</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        {this.state.error && 
+                            <Alert bsStyle="warning">
+                                {this.state.error}
+                            </Alert>
+                        }
                         <form>
                             <FieldGroup
                                 id="formControlsEmail"
