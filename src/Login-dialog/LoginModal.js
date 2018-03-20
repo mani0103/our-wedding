@@ -61,7 +61,7 @@ class LoginModal extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         {this.state.error && 
-                            <Alert bsStyle="warning">
+                            <Alert bsStyle="danger">
                                 {this.state.error}
                             </Alert>
                         }

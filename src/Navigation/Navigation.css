@@ -16,12 +16,12 @@
   .navbar-custom{
     background-color: rgb(156, 206, 206);
     font-family: 'Monotype Corsiva';
-    font-size: 30px;
+    font-size: 2em;
   }
 
 .dropdown-menu > li {
-  height: 40px;
-  font-size: 25px;
+  height: 50px;
+  font-size: 2em;
 
 }
 .dropdown-menu > li > a {
@@ -29,5 +29,6 @@
 }
 
 a {
-  color: darkslategray
+  color: darkslategray;
+  margin: 10px 0px;
 }
