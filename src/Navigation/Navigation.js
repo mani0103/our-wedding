@@ -87,8 +87,11 @@ class Navigation extends Component {
                   <LinkContainer to="/gifts">
                     <MenuItem><LocalizedText stringUN='gift-information' {...this.props}/></MenuItem>
                   </LinkContainer> 
-                  <LinkContainer to="/meals">
+                  {/*<LinkContainer to="/meals">
                     <MenuItem><LocalizedText stringUN='meal-options' {...this.props}/></MenuItem>
+                  </LinkContainer>*/}
+                  <LinkContainer to="/rsvp">
+                    <MenuItem><LocalizedText stringUN='rsvp' {...this.props}/></MenuItem>
                   </LinkContainer>
                 </NavDropdown>
               )}

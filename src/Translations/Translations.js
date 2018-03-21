@@ -57,6 +57,11 @@ export const TRANSLATIONS = {
         hun: `Kijelentkezés`,
         cz: `Odhlášení`
     },
+    rsvp: {
+        eng: `RSVP`,
+        hun: `Részvétel visszaigazolása`,
+        cz: `RSVP`
+    },
     ertesito: {
         eng: `TODO`,
         hun: `Örömmel értesítjük, hogy 2018.7.7-én 16 órakor 
