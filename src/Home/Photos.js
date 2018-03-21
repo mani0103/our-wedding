@@ -53,8 +53,7 @@ class PhotoGallery extends Component {
     }
     closeUploadDialog() {
         this.setState({
-            showUploadDialog: false,
-            pics: []
+            showUploadDialog: false
         })
     }
 

@@ -93,7 +93,7 @@ class Navigation extends Component {
                 </NavDropdown>
               )}
             </Nav>
-            <Nav pullRight>
+            <Nav pullRight className='fill'>
               {
                 !isAuthenticated && (
                   <NavItem

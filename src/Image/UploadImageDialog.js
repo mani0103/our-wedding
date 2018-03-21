@@ -13,6 +13,7 @@ class UploadImageDialog extends Component {
         
         this.uploadToFirebase = this.uploadToFirebase.bind(this);
         this.handleFileSelect = this.handleFileSelect.bind(this);
+        this.closeUploadDialog = this.closeUploadDialog.bind(this);    
 
         this.state = {
             pics: []
@@ -116,10 +117,14 @@ class UploadImageDialog extends Component {
         })
         
     }
+    closeUploadDialog() {
+        this.setState({pics: []});
+        this.props.closeUploadDialog();
+    }
 
     render() {
         return (
-            <Modal show={this.props.showUploadDialog} onHide={this.props.closeUploadDialog}>
+            <Modal show={this.props.showUploadDialog} onHide={this.closeUploadDialog}>
                 <Modal.Header closeButton>
                     <Modal.Title>Upload Photos</Modal.Title>
                 </Modal.Header>
@@ -130,7 +135,7 @@ class UploadImageDialog extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.uploadToFirebase} disabled={this.state.uploadButtonDisabled} >Upload</Button>
-                    <Button onClick={this.props.closeUploadDialog}>Close</Button>
+                    <Button onClick={this.closeUploadDialog}>Close</Button>
                 </Modal.Footer>             
             </Modal>
             
