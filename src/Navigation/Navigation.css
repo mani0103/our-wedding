@@ -65,8 +65,7 @@ nav ul li a:hover:after {
   -moz-animation: fill 1s forwards;
   opacity: 1;
 }
-
-@-webkit-keyframes fill {
+@keyframes fill {
   0% {
     width: 0%;
     height: 1px;
