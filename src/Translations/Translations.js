@@ -126,6 +126,31 @@ export const TRANSLATIONS = {
         Kulturní dom obce Pribeta: Školská 628/127, Pribeta
         {"lat": 47.900891,"lng": 18.313930,"name": "Kulturní dom obce Pribeta: Školská 628/127, Pribeta"}`
     },
+    countdownToOurWedding: {
+        eng: `Countdown To Our Wedding`,
+        hun: `Visszaszámlálás az esküvőig`,
+        cz: `Countdown To Our Wedding`
+    },
+    days: {
+        eng: `Days`,
+        hun: `Nap`,
+        cz: `Days`
+    },
+    hours: {
+        eng: `Hours`,
+        hun: `Óra`,
+        cz: `Hours`
+    },
+    minutes: {
+        eng: `Minutes`,
+        hun: `Perc`,
+        cz: `Minutes`
+    },
+    seconds: {
+        eng: `seconds`,
+        hun: `Másodperc`,
+        cz: `seconds`
+    },
 
     
 

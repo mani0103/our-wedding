@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css'
 import LocalizedText from '../Translations/LocalizedText';
+import Countdown from '../Countdown/Countdown'
 import { TRANSLATIONS } from '../Translations/Translations'
 
 class Home extends Component {
@@ -19,6 +20,8 @@ class Home extends Component {
         <p>
           <LocalizedText stringUN='idezet' {...this.props}/>
         </p>
+        <Countdown {...this.props}/>
+        <div style={{height: '300px'}}/>
       </div>
     );
   }
