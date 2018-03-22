@@ -9,6 +9,7 @@ import Home from './Home/Home';
 import Details from './Home/Details';
 import Meals from './Home/Meals'
 import PhotoGallery from './Home/Photos';
+import PeopleList from './Home/Rsvp'
 import Auth from './Auth/Auth';
 import fire from './fire'
 import header from './Resources/header.png'
@@ -117,6 +118,7 @@ class App extends Component {
             <Route path="/locations" render={(props) => <Details text={TRANSLATIONS['locationslong'][this.state.lang]} {...props} {...commonProps} />} />
             <Route path="/gifts" render={(props) => <Gifts  {...props}  {...commonProps}/>} />
             <Route path="/meals" render={(props) => <Meals  {...props}  {...commonProps}/>} />
+            <Route path="/rsvp" render={(props) => <PeopleList  {...props}  {...commonProps}/>} />
           </div>
         }
         {!isAuthenticated &&
@@ -125,6 +127,7 @@ class App extends Component {
             <Route path="/accomodation" render={() => (<Redirect to="/home" />)} />
             <Route path="/gifts" render={() => (<Redirect to="/home" />)} />
             <Route path="/meals" render={() => (<Redirect to="/home" />)} />
+            <Route path="/rsvp" render={() => (<Redirect to="/home" />)} />
           </div>
         }
       </div>
