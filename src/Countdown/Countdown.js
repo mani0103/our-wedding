@@ -47,7 +47,7 @@ class Countdown extends Component {
     render(){
         //console.log(this.props)
         return(        
-            <div class="container">
+            <div>
                 <h1 id="head"><LocalizedText stringUN='countdownToOurWedding' {...this.props}/></h1>
                 <ul className='countdown'>
                     <li><span id="days">{this.state.days}</span><LocalizedText stringUN='days' {...this.props}/></li>

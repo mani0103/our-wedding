@@ -19,9 +19,8 @@ class Home extends Component {
         </p>
         <p>
           <LocalizedText stringUN='idezet' {...this.props}/>
-        </p>
+        </p> 
         <Countdown {...this.props}/>
-        <div style={{height: '300px'}}/>
       </div>
     );
   }

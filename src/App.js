@@ -27,7 +27,9 @@ class App extends Component {
     super(props);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.selectImage = this.selectImage.bind(this);
+    this.hideBar = this.hideBar.bind(this)
     this.state = {
+      navbarFixedToTop: false,
       authed: false,
       loading: false,
       lang: 'hun',
@@ -38,8 +40,7 @@ class App extends Component {
 
   componentDidMount () {
 
-//    storageRef.child('1.jpg').getMetadata()
-//          .then(data => console.log(data))
+    window.addEventListener('scroll', this.hideBar);
 
     pictureRef.on('value',(photos) => this.setState({photos: photos.val()}))
 
@@ -64,7 +65,8 @@ class App extends Component {
     })
   }
   componentWillUnmount () {
-    this.removeListener()
+    this.removeListener();
+    window.removeEventListener('scroll', this.hideBar);
   }
 
   changeLanguage(lang){
@@ -83,18 +85,29 @@ class App extends Component {
     this.setState({photos: newPhotosState})
   }
 
+  hideBar() {
+    let { navbarFixedToTop } = this.state
+    window.scrollY > 300 ?
+      !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
+      :
+      navbarFixedToTop && this.setState({ navbarFixedToTop: false })
+
+  }
+
+
   render() {
     const isAuthenticated = this.state.authed;
     const commonProps = {
       authed: this.state.authed,
       lang: this.state.lang,
-      user: this.state.user
-
+      user: this.state.user,
+      navbarFixedToTop: this.state.navbarFixedToTop
     }
     return (
       <div>
         <Route exact path="/" render={() => (<Redirect to="/home" />)} />  
         <Route path="/" render={(props) => <div className='header-image'/>} />
+        {this.state.navbarFixedToTop && <Route path="/" render={(props) => <div className='fakeNavigation'style={{height: '100px'}}/>} />}
         <Route path="/" render={(props) => <Navigation changeLanguage={this.changeLanguage} {...props} {...commonProps}/>} />
         <Route path="/home" render={(props) => <Home  {...props}  {...commonProps}/>} />
         <Route path="/details" render={(props) => <Details text={TRANSLATIONS['detailslong'][this.state.lang]} {...props} {...commonProps} />} />

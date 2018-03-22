@@ -15,32 +15,13 @@ class Navigation extends Component {
     super(props);
 
     
-
-    this.hideBar = this.hideBar.bind(this)
     this.openloginDialog = this.openloginDialog.bind(this);
     this.closeLoginDialog = this.closeLoginDialog.bind(this);
 
     this.state = {
       showModal: false,
-      navbarFixedToTop: false,
       slectedNav: ""
     };
-  }
-
-  hideBar() {
-    let { navbarFixedToTop } = this.state
-    window.scrollY > 300 ?
-      !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
-      :
-      navbarFixedToTop && this.setState({ navbarFixedToTop: false })
-
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.hideBar);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.hideBar);
   }
 
   goTo(route) {
@@ -65,7 +46,7 @@ class Navigation extends Component {
     return (
       <div>
         <div className="Navigation">
-          <Navbar fixedTop={this.state.navbarFixedToTop} bsStyle="custom" fluid={true}>           
+          <Navbar fixedTop={this.props.navbarFixedToTop} bsStyle="custom" fluid={true}>           
             <Nav>
               <LinkContainer to="/home">
                 <NavItem><LocalizedText stringUN='ourWedding' {...this.props}/></NavItem>

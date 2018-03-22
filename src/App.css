@@ -5,6 +5,18 @@
   height: 300px
 }
 
+.container {
+  font-family: 'Monotype Corsiva'; 
+  text-align: center;
+  color: lightslategray;
+  font-size: 30px;
+  white-space: pre-line;
+  margin: 0px 0px 0px 0px;
+  border: 0px 0px 0px 0px;
+  padding: 50px 0px 0px 0px;
+  width: 100%
+}
+
 .btn {
   padding: 10px 20px;
   border: 0 none;
