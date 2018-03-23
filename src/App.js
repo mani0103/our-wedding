@@ -107,7 +107,8 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" render={() => (<Redirect to="/home" />)} />  
-        <Route path="/" render={(props) => <div className='header-image'/>} />
+        <Route path="/" render={(props) => 
+          <div className='header-image'>Silvia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attila</div>} />
         {this.state.navbarFixedToTop && <Route path="/" render={(props) => <div className='fakeNavigation'style={{height: '100px'}}/>} />}
         <Route path="/" render={(props) => <Navigation changeLanguage={this.changeLanguage} {...props} {...commonProps}/>} />
         <Route path="/home" render={(props) => <Home  {...props}  {...commonProps}/>} />

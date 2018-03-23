@@ -11,9 +11,9 @@ class Home extends Component {
     const isAuthenticated = this.props.authed;
     return (
       <div className="container">
-        <h1>
+        {/* <h1>
           Silvia & Attila
-        </h1>
+        </h1> */}
         <p>
           <LocalizedText stringUN='ertesito' {...this.props}/>
         </p>
