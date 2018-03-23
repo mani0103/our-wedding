@@ -1,0 +1,151 @@
+.display-list,
+.flex-wrapper,
+.list-item,
+.form-container,
+.rsvp-list {
+  display: flex;
+}
+
+.flex-wrapper,
+.form-container,
+.list-item,
+.display-list, .rsvp-list {
+  align-items: center;
+}
+
+.rsvp-list {
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
+  font-family: 'Monotype Corsiva';
+  color: lightslategray;
+}
+.rsvp-list h2,
+.rsvp-list h4 {
+  letter-spacing: 1px;
+  align-self: center;
+  margin: 8px;
+}
+
+.flex-wrapper {
+  justify-content: space-around;
+  width: 70%;
+  margin-top: 30px;
+}
+
+.form-container {
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+.rsvp-list button,
+.rsvp-list input {
+  outline: none;
+  border: none;
+}
+
+.rsvp-list input {
+  width: 260px;
+  height: 30px;
+  padding-left: 10px;
+  background: none;
+  color: #E843A0;
+  font-size: 15px;
+  border: 1px solid #777DA7;
+  border-radius: 2px;
+}
+.rsvp-list input:focus {
+  background: white;
+}
+
+.rsvp-list button {
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+  background: #E843A0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: white;
+  cursor: pointer;
+  transition: .3s all;
+  border-radius: 2px;
+}
+.rsvp-list button:disabled {
+  background: #80DED9;
+  opacity: 0.8;
+  transition: .3s all;
+}
+
+.close {
+  width: 15px;
+  height: 15px;
+  background: #ea51a7;
+  cursor: pointer;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  color: white;
+  font-size: 16px;
+}
+
+.list-item {
+  margin: 10px 0;
+  color: #777DA7;
+  justify-content: space-between;
+  padding: 5px 10px;
+  width: 300px;
+  font-size: 30px;
+}
+.list-item:hover {
+  transition: .7s all ease;
+  color: #E843A0;
+  animation: 0.4s bounce infinite;
+}
+
+.list-anim-enter {
+  opacity: 0;
+  transition: 500ms all ease;
+}
+
+.list-anim-enter-active {
+  opacity: 1;
+  transition: 500ms all ease;
+  transform: rotateX(360deg);
+}
+
+.list-anim-leave {
+  opacity: 1;
+  transition: 500ms all;
+}
+
+.list-anim-leave-active {
+  opacity: 0;
+  transition: 500ms all;
+  transform: translateX(20px);
+}
+
+.display-list {
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+.display-list h5 {
+  margin-bottom: 6px;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.people-list {
+  margin: 20px;
+}

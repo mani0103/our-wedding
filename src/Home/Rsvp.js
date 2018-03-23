@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-
+import './Rsvp.css';
+import fire from '../fire';
+import LocalizedText  from '../Translations/LocalizedText'
 //const CSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+
+const db = fire.database();
+const dbref = db.ref();
 
 class PeopleList extends Component {
   constructor() {
@@ -8,12 +14,26 @@ class PeopleList extends Component {
 
     this.state = {
       item: "",
-      itemList: ["Sasha Tran", "Jenn", "Stephanie"]
+      itemList: []
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.onSubmitForm = this.onSubmitForm.bind(this);
     this.removePeople = this.removePeople.bind(this);
+  }
+
+  componentDidMount() {
+    dbref.child('rsvp').once('value',(data) => {
+      this.setState(
+        {
+          itemList: 
+            data.val()[this.props.user.uid] && data.val()[this.props.user.uid].guests ? 
+            data.val()[this.props.user.uid].guests : 
+            []
+        }
+      );
+      console.log(data)
+    })
   }
 
   handleChange(e) {
@@ -25,8 +45,16 @@ class PeopleList extends Component {
   onSubmitForm(e) {
     e.preventDefault();
     var text = this.state.item;
-
     var newList = this.state.itemList.concat(text);
+
+    var updates = {};
+    updates[`/rsvp/${this.props.user.uid}`] = {
+      uid: this.props.user.uid,
+      userEmail: this.props.user.email,
+      guests: newList
+    };
+    dbref.update(updates);
+
     this.setState({
       itemList: newList,
       item: ""
@@ -39,6 +67,14 @@ class PeopleList extends Component {
       return itemList.indexOf(_item) != index;
     });
 
+    var updates = {};
+    updates[`/rsvp/${this.props.user.uid}`] = {
+      uid: this.props.user.uid,
+      userEmail: this.props.user.email,
+      guests: newList
+    };
+    dbref.update(updates);
+
     this.setState({
       itemList: newList
     });
@@ -47,9 +83,9 @@ class PeopleList extends Component {
   render() {
     const { item, itemList, disabled } = this.state;
     return (
-      <div className="container">
-        <h2> RSVP List </h2>
-        <h5> Add your name to the list </h5>
+      <div className="rsvp-list">
+        <h2> <LocalizedText stringUN='rsvpList' {...this.props}/> </h2>
+        <h3> <LocalizedText stringUN='addYourNameToTheList' {...this.props}/> </h3>
         <div className="flex-wrapper">
           <form className="form-container">
             <input type="text" onChange={this.handleChange} value={item} />
@@ -63,8 +99,8 @@ class PeopleList extends Component {
           </form>
         </div>
         <div className="display-list">
-          <h2> Attendee List </h2>
-          <h5>{itemList.length} awesome people attending</h5>
+          <h2> <LocalizedText stringUN='attendeeList' {...this.props}/> </h2>
+          <h3>{itemList.length} <LocalizedText stringUN='awesomePeopleAttending' {...this.props}/></h3>
           <div className="people-list">
             <RenderPeople
               itemList={itemList}
@@ -86,7 +122,11 @@ class RenderPeople extends Component {
     const props = this.props;
     return (
       <div>
-
+        {/*<CSSTransitionGroup
+          transitionName="list-anim"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+        >*/}
           {this.props.itemList.map(function(item, index) {
             return (
               <li key={index} className="list-item">
@@ -100,6 +140,7 @@ class RenderPeople extends Component {
               </li>
             );
           })}
+        {/* </CSSTransitionGroup> */}
       </div>
     );
   }

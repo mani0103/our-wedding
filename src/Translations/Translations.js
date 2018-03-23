@@ -151,8 +151,25 @@ export const TRANSLATIONS = {
         hun: `Másodperc`,
         cz: `seconds`
     },
-
-    
-
+    rsvpList: {
+        eng: `RSVP List`,
+        hun: `RSVP List`,
+        cz: `RSVP List`
+    },
+    addYourNameToTheList: {
+        eng: `Add your name to the list`,
+        hun: `Kérem adja hozzá a résztvevők neveit`,
+        cz: `Add your name to the list`
+    },
+    attendeeList: {
+        eng: `Attendee List`,
+        hun: `Résztvevők listája`,
+        cz: `Attendee List`
+    },
+    awesomePeopleAttending: {
+        eng: `awesome people attending`,
+        hun: `awesome people attending`,
+        cz: `awesome people attending`
+    },
 
 }
