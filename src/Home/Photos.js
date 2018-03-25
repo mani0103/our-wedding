@@ -3,6 +3,7 @@ import Gallery from 'react-grid-gallery';
 import { Modal, Button, ButtonGroup } from 'react-bootstrap';
 import fire from '../fire';
 import UploadImageDialog from '../Image/UploadImageDialog';
+import LocalizedText from '../Translations/LocalizedText'
 import './Photos.css'
 /*
 const IMAGES =
@@ -88,9 +89,9 @@ class PhotoGallery extends Component {
             <div>
                 { this.props.authed &&
                     <ButtonGroup>
-                        <Button onClick={this.openUploadDialog} >Upload Pictures</Button>
-                        {isSomethingSelected && <Button onClick={this.deleteImages}>Delete Pictures</Button>}
-                        {isSomethingSelected && <Button onClick={this.deselectAll}>Deselect All</Button>}
+                        <Button onClick={this.openUploadDialog} ><LocalizedText stringUN='uploadPictures' {...this.props}/></Button>
+                        {isSomethingSelected && <Button onClick={this.deleteImages}><LocalizedText stringUN='deletePictures' {...this.props}/></Button>}
+                        {isSomethingSelected && <Button onClick={this.deselectAll}><LocalizedText stringUN='deselectAll' {...this.props}/></Button>}
                     </ButtonGroup>
                 }
 

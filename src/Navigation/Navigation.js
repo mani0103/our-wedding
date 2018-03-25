@@ -51,16 +51,13 @@ class Navigation extends Component {
               <LinkContainer to="/home">
                 <NavItem><LocalizedText stringUN='ourWedding' {...this.props}/></NavItem>
               </LinkContainer>
-              <LinkContainer to="/details">
-                <NavItem><LocalizedText stringUN='details' {...this.props}/></NavItem>
-              </LinkContainer>
               <LinkContainer to="/photos">
                 <NavItem><LocalizedText stringUN='photos' {...this.props}/></NavItem>
               </LinkContainer>  
               {isAuthenticated && (
-                <NavDropdown title={TRANSLATIONS['guests'][this.props.lang]} id="basic-nav-dropdown">
-                  <LinkContainer to="/locations">
-                    <MenuItem><LocalizedText stringUN='locations' {...this.props}/></MenuItem>
+                <NavDropdown title={TRANSLATIONS['details'][this.props.lang]} id="basic-nav-dropdown">
+                  <LinkContainer to="/details">
+                    <NavItem><LocalizedText stringUN='program' {...this.props}/></NavItem>
                   </LinkContainer>
                   <LinkContainer to="/accomodation">
                     <MenuItem><LocalizedText stringUN='accomodation' {...this.props}/></MenuItem>

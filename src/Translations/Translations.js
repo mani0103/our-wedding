@@ -14,8 +14,8 @@ export const TRANSLATIONS = {
     },
     photos: {
         eng: `Photos`,
-        hun: `Képek`,
-        cz: `Fotky`
+        hun: `Képeink`,
+        cz: `Naše Fotky`
     },
     guests: {
         eng: `Guests Section`,
@@ -87,6 +87,7 @@ export const TRANSLATIONS = {
         16.00- házassági szertartás a komáromi Szent András bazilikában
         {"lat": 47.7572284,"lng": 18.1267641, "name": "Szent Andás bazilika: Nádor u. 8 , Komárno"}\n
         17.00- gratulációk fogadása \n
+        (kérjük a kedves násznépet, ne hozzanak a menyasszonynak virágcsokrokat, nagyobb örömöt okoz nekünk, hogy megtisztelnek minket a jelenlétükkel)
         17.15- közös fényképezkedés a Szent András bazilika előtt 
         (kérünk mindenkit, hogy maradjon a helyszínen és megörökíthessük a közösen átélt pillanatot) \n
         Csoportos fényképezkedés: szülőkkel, családokkal, barátokkal és ismerősökkel külön \n
@@ -96,6 +97,7 @@ export const TRANSLATIONS = {
         16.00- svatební obřad v komárňanské bazilice svatého Ondřeje \n
         {"lat": 47.7572284,"lng": 18.1267641,"name": "bazilika svatého Ondřeje: Palatínova 8 , Komárno"}\n
         17.00- přijímání gratulací \n
+        (prosíme svatebčany aby nevěste nenosili kytky, pro nás je největší radost vaše přítomnost)
         17.15- společné focení před bazilikou 
         (prosíme všechny z Vás, aby jste počkali na focení na místě) \n
         Focení skupinek: s rodiči, s rodinami, s příteli a známými zvlášť \n
@@ -153,13 +155,13 @@ export const TRANSLATIONS = {
     },
     rsvpList: {
         eng: `RSVP List`,
-        hun: `RSVP List`,
-        cz: `RSVP List`
+        hun: `Résztvevők listája`,
+        cz: `Seznam účastníků`
     },
     addYourNameToTheList: {
         eng: `Add your name to the list`,
-        hun: `Kérem adja hozzá a résztvevők neveit`,
-        cz: `Add your name to the list`
+        hun: `Kérjük írja be az Ön és családtagjai/kísérői nevét akikkel részt venni szándékoznak`,
+        cz: `Prosíme potvrďte účast Vaší i Vašich blízkych připsáním se na seznam`
     },
     attendeeList: {
         eng: `Attendee List`,
@@ -168,8 +170,27 @@ export const TRANSLATIONS = {
     },
     awesomePeopleAttending: {
         eng: `awesome people attending`,
-        hun: `awesome people attending`,
-        cz: `awesome people attending`
+        hun: `Várjuk Önöket:`,
+        cz: `Těšíme se na Vás:`
     },
-
+    program: {
+        eng: `Program`,
+        hun: `Program`,
+        cz: `Program`
+    },
+    uploadPictures: {
+        eng: `Upload Pictures`,
+        hun: `Képfeltöltés`,
+        cz: `Nahrát fotku`
+    },
+    deletePictures: {
+        eng: `Delete pictures`,
+        hun: `Képek törlése`,
+        cz: `Smazat fotky`
+    },
+    deselectAll: {
+        eng: `Deselect All`,
+        hun: `Kijelölés visszavonása`,
+        cz: `Zrušit výber`
+    },
 }

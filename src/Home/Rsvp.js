@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Rsvp.css';
 import fire from '../fire';
-import LocalizedText  from '../Translations/LocalizedText'
+import LocalizedText  from '../Translations/LocalizedText';
+import { Checkbox } from 'react-bootstrap';
 //const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 
@@ -84,8 +85,8 @@ class PeopleList extends Component {
     const { item, itemList, disabled } = this.state;
     return (
       <div className="rsvp-list">
-        <h2> <LocalizedText stringUN='rsvpList' {...this.props}/> </h2>
-        <h3> <LocalizedText stringUN='addYourNameToTheList' {...this.props}/> </h3>
+        <h1> <LocalizedText stringUN='rsvpList' {...this.props}/> </h1>
+        <h2> <LocalizedText stringUN='addYourNameToTheList' {...this.props}/> </h2>
         <div className="flex-wrapper">
           <form className="form-container">
             <input type="text" onChange={this.handleChange} value={item} />
@@ -99,8 +100,8 @@ class PeopleList extends Component {
           </form>
         </div>
         <div className="display-list">
-          <h2> <LocalizedText stringUN='attendeeList' {...this.props}/> </h2>
-          <h3>{itemList.length} <LocalizedText stringUN='awesomePeopleAttending' {...this.props}/></h3>
+          
+          <h3><LocalizedText stringUN='awesomePeopleAttending' {...this.props}/></h3>
           <div className="people-list">
             <RenderPeople
               itemList={itemList}
@@ -128,7 +129,7 @@ class RenderPeople extends Component {
           transitionLeaveTimeout={500}
         >*/}
           {this.props.itemList.map(function(item, index) {
-            return (
+            return ([
               <li key={index} className="list-item">
                 {item}
                 <div
@@ -137,9 +138,26 @@ class RenderPeople extends Component {
                 >
                   -
                 </div>
-              </li>
-            );
+              </li>,
+               <div class="exp" key={item}>
+                <div class="checkbox">
+                  <form>
+                    <div>
+                      <input type="checkbox" id="check" name="check" value="" />
+                      <label for="check">
+                        <span></span>
+                        Checkbox
+                      </label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            ]);
           })}
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
         {/* </CSSTransitionGroup> */}
       </div>
     );

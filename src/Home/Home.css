@@ -6,4 +6,9 @@
 
 h1,p,q{
     padding: 20px;
+    line-height: 1.6;
+}
+
+.home {
+    padding: 0px;
 }

@@ -10,13 +10,13 @@ class Home extends Component {
   render() {
     const isAuthenticated = this.props.authed;
     return (
-      <div className="container">
+      <div className="container home">
         {/* <h1>
           Silvia & Attila
         </h1> */}
-        <p>
+        <h1>
           <LocalizedText stringUN='ertesito' {...this.props}/>
-        </p>
+        </h1>
         <p>
           <LocalizedText stringUN='idezet' {...this.props}/>
         </p> 
