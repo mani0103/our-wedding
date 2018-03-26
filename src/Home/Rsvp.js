@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Rsvp.css';
+import './CustomCheckBox.css'
 import fire from '../fire';
 import LocalizedText  from '../Translations/LocalizedText';
-import { Checkbox } from 'react-bootstrap';
+
 //const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 
@@ -14,20 +15,22 @@ class PeopleList extends Component {
     super();
 
     this.state = {
-      item: "",
-      itemList: []
+      Guest: "",
+      GuestList: []
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
+    this.onGuestAdd = this.onGuestAdd.bind(this);
     this.removePeople = this.removePeople.bind(this);
+    this.checkMealPreferneces = this.checkMealPreferneces.bind(this);
+    
   }
 
   componentDidMount() {
     dbref.child('rsvp').once('value',(data) => {
       this.setState(
         {
-          itemList: 
+          GuestList: 
             data.val()[this.props.user.uid] && data.val()[this.props.user.uid].guests ? 
             data.val()[this.props.user.uid].guests : 
             []
@@ -39,14 +42,19 @@ class PeopleList extends Component {
 
   handleChange(e) {
     this.setState({
-      item: e.target.value
+      Guest: e.target.value
     });
   }
 
-  onSubmitForm(e) {
+  onGuestAdd(e) {
     e.preventDefault();
-    var text = this.state.item;
-    var newList = this.state.itemList.concat(text);
+    var name = this.state.Guest;
+    var newList = [...this.state.GuestList, 
+      {
+        name: name,
+        mealPreferneces: false,
+      }
+    ];
 
     var updates = {};
     updates[`/rsvp/${this.props.user.uid}`] = {
@@ -57,15 +65,15 @@ class PeopleList extends Component {
     dbref.update(updates);
 
     this.setState({
-      itemList: newList,
-      item: ""
+      GuestList: newList,
+      Guest: ""
     });
   }
 
   removePeople(index) {
-    const { itemList } = this.state;
-    let newList = itemList.filter(function(_item) {
-      return itemList.indexOf(_item) != index;
+    const { GuestList } = this.state;
+    let newList = GuestList.filter(function(_Guest) {
+      return GuestList.indexOf(_Guest) != index;
     });
 
     var updates = {};
@@ -77,23 +85,31 @@ class PeopleList extends Component {
     dbref.update(updates);
 
     this.setState({
-      itemList: newList
+      GuestList: newList
+    });
+  }
+
+  checkMealPreferneces(index){
+    let newList  = this.state.GuestList;
+    newList[index].mealPreferneces = !newList[index].mealPreferneces;
+    this.setState({
+      GuestList: newList
     });
   }
 
   render() {
-    const { item, itemList, disabled } = this.state;
+    const { Guest, GuestList, disabled } = this.state;
     return (
       <div className="rsvp-list">
         <h1> <LocalizedText stringUN='rsvpList' {...this.props}/> </h1>
         <h2> <LocalizedText stringUN='addYourNameToTheList' {...this.props}/> </h2>
         <div className="flex-wrapper">
           <form className="form-container">
-            <input type="text" onChange={this.handleChange} value={item} />
+            <input type="text" onChange={this.handleChange} value={Guest} />
             <button
               type="submit"
-              onClick={this.onSubmitForm}
-              disabled={item.length > 0 ? false : true}
+              onClick={this.onGuestAdd}
+              disabled={Guest.length > 0 ? false : true}
             >
               +
             </button>
@@ -101,12 +117,15 @@ class PeopleList extends Component {
         </div>
         <div className="display-list">
           
-          <h3><LocalizedText stringUN='awesomePeopleAttending' {...this.props}/></h3>
+          {GuestList[0] && <h3><LocalizedText stringUN='awesomePeopleAttending' {...this.props}/></h3>}
           <div className="people-list">
             <RenderPeople
-              itemList={itemList}
+              GuestList={GuestList}
               removePeople={this.removePeople}
+              checkMealPreferneces={this.checkMealPreferneces}
             />
+            <label className="comment-label" htmlFor="comment" >Comments</label>
+            <textarea id="comment" rows="10" cols="60" name="comment" form="usrform">Enter text here  ...</textarea>
           </div>
         </div>
       </div>
@@ -122,44 +141,24 @@ class RenderPeople extends Component {
   render() {
     const props = this.props;
     return (
-      <div>
-        {/*<CSSTransitionGroup
-          transitionName="list-anim"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-        >*/}
-          {this.props.itemList.map(function(item, index) {
-            return ([
-              <li key={index} className="list-item">
-                {item}
-                <div
-                  className="close"
-                  onClick={props.removePeople.bind(null, index)}
-                >
-                  -
-                </div>
-              </li>,
-               <div class="exp" key={item}>
-                <div class="checkbox">
-                  <form>
-                    <div>
-                      <input type="checkbox" id="check" name="check" value="" />
-                      <label for="check">
-                        <span></span>
-                        Checkbox
-                      </label>
-                    </div>
-                  </form>
-                </div>
+          this.props.GuestList.map((Guest, index) => {
+            //console.log(Guest);
+            return (
+              <div key={index}>
+                <div  className="list-Guest">
+                  {Guest.name}
+                  <div
+                    className="close"
+                    onClick={props.removePeople.bind(null, index)}
+                  >
+                    -
+                  </div>
+                </div>             
+                <input id={`${index}`} type="checkbox" checked={Guest.mealPreferneces} onChange={props.checkMealPreferneces.bind(null, index)}/>
+                <label htmlFor={`${index}`}>Meal preference</label>
               </div>
-            ]);
-          })}
-        <div class="form-group">
-          <label for="comment">Comment:</label>
-          <textarea class="form-control" rows="5" id="comment"></textarea>
-        </div>
-        {/* </CSSTransitionGroup> */}
-      </div>
+            );
+          })
     );
   }
 }
