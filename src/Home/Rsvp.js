@@ -70,7 +70,8 @@ class PeopleList extends Component {
     updates[`/rsvp/${this.props.user.uid}`] = {
       uid: this.props.user.uid,
       userEmail: this.props.user.email,
-      guests: newList
+      guests: newList,
+      comments: this.state.comments
     };
     dbref.update(updates);
 
@@ -90,7 +91,8 @@ class PeopleList extends Component {
     updates[`/rsvp/${this.props.user.uid}`] = {
       uid: this.props.user.uid,
       userEmail: this.props.user.email,
-      guests: newList
+      guests: newList,
+      comments: this.state.comments
     };
     dbref.update(updates);
 
@@ -107,7 +109,8 @@ class PeopleList extends Component {
     updates[`/rsvp/${this.props.user.uid}`] = {
       uid: this.props.user.uid,
       userEmail: this.props.user.email,
-      guests: newList
+      guests: newList,
+      comments: this.state.comments
     };
     dbref.update(updates);
 
@@ -122,13 +125,19 @@ class PeopleList extends Component {
     let newComments = [...this.state.comments, this.state.comment];
 
     var updates = {};
-    updates[`/rsvp/${this.props.user.uid}/comments`] = newComments;
+    var updates = {};
+    updates[`/rsvp/${this.props.user.uid}`] = {
+      uid: this.props.user.uid,
+      userEmail: this.props.user.email,
+      guests: this.state.GuestList,
+      comments: newComments
+    };
     dbref.update(updates);
 
     this.setState({
       comments: newComments,
       comment: ''
-    })
+    });
   }
 
   render() {
