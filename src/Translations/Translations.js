@@ -193,4 +193,9 @@ export const TRANSLATIONS = {
         hun: `Kijelölés visszavonása`,
         cz: `Zrušit výber`
     },
+    music: {
+        eng: `Music`,
+        hun: `Zene`,
+        cz: `Hudba`
+    },
 }

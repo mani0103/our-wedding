@@ -119,6 +119,7 @@ class App extends Component {
             <Route path="/locations" render={(props) => <Details text={TRANSLATIONS['locationslong'][this.state.lang]} {...props} {...commonProps} />} />
             <Route path="/gifts" render={(props) => <Gifts  {...props}  {...commonProps}/>} />
             <Route path="/meals" render={(props) => <Meals  {...props}  {...commonProps}/>} />
+            <Route path="/music" render={(props) => <Meals  {...props}  {...commonProps}/>} />
             <Route path="/rsvp" render={(props) => <PeopleList  {...props}  {...commonProps}/>} />
           </div>
         }
@@ -128,6 +129,7 @@ class App extends Component {
             <Route path="/accomodation" render={() => (<Redirect to="/home" />)} />
             <Route path="/gifts" render={() => (<Redirect to="/home" />)} />
             <Route path="/meals" render={() => (<Redirect to="/home" />)} />
+            <Route path="/music" render={() => (<Redirect to="/home" />)} />
             <Route path="/rsvp" render={() => (<Redirect to="/home" />)} />
           </div>
         }
