@@ -10,6 +10,7 @@ import Details from './Home/Details';
 import Meals from './Home/Meals'
 import PhotoGallery from './Home/Photos';
 import PeopleList from './Home/Rsvp'
+import MusicList from './Home/Music'
 import Auth from './Auth/Auth';
 import fire from './fire'
 import header from './Resources/header.png'
@@ -119,7 +120,7 @@ class App extends Component {
             <Route path="/locations" render={(props) => <Details text={TRANSLATIONS['locationslong'][this.state.lang]} {...props} {...commonProps} />} />
             <Route path="/gifts" render={(props) => <Gifts  {...props}  {...commonProps}/>} />
             <Route path="/meals" render={(props) => <Meals  {...props}  {...commonProps}/>} />
-            <Route path="/music" render={(props) => <Meals  {...props}  {...commonProps}/>} />
+            <Route path="/music" render={(props) => <MusicList  {...props}  {...commonProps}/>} />
             <Route path="/rsvp" render={(props) => <PeopleList  {...props}  {...commonProps}/>} />
           </div>
         }

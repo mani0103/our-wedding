@@ -198,4 +198,14 @@ export const TRANSLATIONS = {
         hun: `Zene`,
         cz: `Hudba`
     },
+    musicList: {
+        eng: `Music List`,
+        hun: `Zenei Lista`,
+        cz: `Seznam Hudby`
+    },
+    musicListDescription: {
+        eng: `Music List Description`,
+        hun: `Adja hozzá a számot amit a lagzin hallani szeretne`,
+        cz: `Seznam Hudby`
+    }
 }

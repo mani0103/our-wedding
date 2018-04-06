@@ -53,11 +53,11 @@
 
 .rsvp-list input {
   width: 260px;
-  height: 30px;
+  height: 35px;
   padding-left: 10px;
   background: none;
   color: #E843A0;
-  font-size: 15px;
+  font-size: 20px;
   border: 1px solid #777DA7;
   border-radius: 2px;
 }
