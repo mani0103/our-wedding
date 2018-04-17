@@ -85,7 +85,7 @@ class PeopleList extends Component {
   removePeople(index) {
     const { GuestList } = this.state;
     let newList = GuestList.filter(function(_Guest) {
-      return GuestList.indexOf(_Guest) != index;
+      return GuestList.indexOf(_Guest) !== index;
     });
 
     var updates = {};
@@ -126,7 +126,7 @@ class PeopleList extends Component {
     let newComments = [...this.state.comments, this.state.comment];
 
     var updates = {};
-    var updates = {};
+
     updates[`/rsvp/${this.props.user.uid}`] = {
       uid: this.props.user.uid,
       userEmail: this.props.user.email,
@@ -194,9 +194,6 @@ class PeopleList extends Component {
 }
 
 class RenderPeople extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const props = this.props;
