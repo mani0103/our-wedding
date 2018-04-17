@@ -4,6 +4,7 @@ import './CustomCheckBox.css'
 import fire from '../fire';
 import LocalizedText  from '../Translations/LocalizedText';
 import {Button} from 'react-bootstrap';
+import { TRANSLATIONS } from '../Translations/Translations';
 
 //const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
@@ -167,10 +168,11 @@ class PeopleList extends Component {
               GuestList={GuestList}
               removePeople={this.removePeople}
               checkMealPreferneces={this.checkMealPreferneces}
+              {...this.props}
             />
             <div className="comment-section">
               
-              <label className="comment-label" htmlFor="comment" >Comments</label>
+              <label className="comment-label" htmlFor="comment" ><LocalizedText stringUN='comment' {...this.props}/></label>
               {this.state.comments.map((comment) => <div key={comment.key}>{comment}</div>)}    
               <textarea 
                 id="comment" 
@@ -180,9 +182,9 @@ class PeopleList extends Component {
                 form="usrform" 
                 onChange={(e) => this.handleChange('comment', e.target.value)}
                 value={this.state.comment}
-                placeholder="Enter your comments here..."
+                placeholder={TRANSLATIONS['placeCommentHere'][this.props.lang]}
               />
-              <Button className='' onClick={this.sendComment}>Send</Button>
+              <Button className='' onClick={this.sendComment}><LocalizedText stringUN='send' {...this.props}/></Button>
             </div>
           </div>
         </div>
@@ -213,7 +215,7 @@ class RenderPeople extends Component {
                   </div>
                 </div>             
                 <input id={`${index}`} type="checkbox" checked={Guest.mealPreferneces} onChange={props.checkMealPreferneces.bind(null, index)}/>
-                <label htmlFor={`${index}`}>Vegetarian/Food Allergy</label>
+                <label htmlFor={`${index}`}><LocalizedText stringUN='vegetarian' {...this.props}/></label>
               </div>
             );
           })
@@ -222,4 +224,3 @@ class RenderPeople extends Component {
 }
 
 export default PeopleList;
-

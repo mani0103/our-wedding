@@ -59,9 +59,9 @@ class Navigation extends Component {
                   <LinkContainer to="/details">
                     <NavItem><LocalizedText stringUN='program' {...this.props}/></NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/accomodation">
+                  {/*<LinkContainer to="/accomodation">
                     <MenuItem><LocalizedText stringUN='accomodation' {...this.props}/></MenuItem>
-                  </LinkContainer> 
+              </LinkContainer>*/} 
                   <LinkContainer to="/gifts">
                     <MenuItem><LocalizedText stringUN='gift-information' {...this.props}/></MenuItem>
                   </LinkContainer> 

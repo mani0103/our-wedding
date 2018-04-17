@@ -205,7 +205,37 @@ export const TRANSLATIONS = {
     },
     musicListDescription: {
         eng: `Music List Description`,
-        hun: `Adja hozzá a számot amit a lagzin hallani szeretne`,
+        hun: `Írd ide, szerinted melyik számra fogunk együtt a legnagyobbat táncolni`,
         cz: `Seznam Hudby`
-    }
+    },
+    artist: {
+        eng: `Artist`,
+        hun: `Előadó`,
+        cz: `Artist`
+    },
+    title: {
+        eng: `Title`,
+        hun: `Szám címe`,
+        cz: `Skladba`
+    },
+    vegetarian: {
+        eng: `Vegetarian/ Food allergy`,
+        hun: `Különleges diéta (kommentben fejtse ki bővebben)`,
+        cz: `Vegetarian`
+    },
+    comment: {
+        eng: `Comment`,
+        hun: `Hozzászólások`,
+        cz: `Comment`
+    },
+    send: {
+        eng: `Send`,
+        hun: `Küldés`,
+        cz: `Send`
+    },
+    placeCommentHere: {
+        eng: `Place your comment here...`,
+        hun: `Hozzászólás írása...`,
+        cz: `Place your comment here...`
+    } 
 }

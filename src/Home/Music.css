@@ -8,6 +8,10 @@
     color: lightslategray;
 }
 
+.music-list-container form{
+  margin: 20px 0px;
+}
+
 .music-list-container h1,
 .music-list-container h2 {
     letter-spacing: 1px;
@@ -56,7 +60,7 @@
 .track-item {
     color: #777DA7;
     justify-content: space-between;
-    font-size: 25px;
+    font-size: 35px;
   }
 .track-item:hover {
     transition: .7s all ease;

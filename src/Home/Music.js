@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../fire';
 import LocalizedText from '../Translations/LocalizedText';
+import { TRANSLATIONS } from '../Translations/Translations';
 import './Music.css';
 
 
@@ -75,9 +76,9 @@ class MusicList extends Component {
                 <h2> <LocalizedText stringUN='musicListDescription' {...this.props} /> </h2>
                 <div className="input-flex-wrapper">
                     <form className="form-container">
-                        <input type="text" placeholder="Artist" onChange={(e) => this.handleChange('artist',e.target.value)} value={artist} />
+                        <input type="text" placeholder={TRANSLATIONS['artist'][this.props.lang]} onChange={(e) => this.handleChange('artist',e.target.value)} value={artist} />
                         &nbsp;&nbsp;-&nbsp;&nbsp;
-                        <input type="text" placeholder="Title" onChange={(e) => this.handleChange('title',e.target.value)} value={title}/>
+                        <input type="text" placeholder={TRANSLATIONS['title'][this.props.lang]} onChange={(e) => this.handleChange('title',e.target.value)} value={title}/>
                         &nbsp;&nbsp;
                         <button
                             className="add-track"
