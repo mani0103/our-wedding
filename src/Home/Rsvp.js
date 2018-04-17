@@ -195,6 +195,7 @@ class PeopleList extends Component {
 
 class RenderPeople extends Component {
 
+  
   render() {
     const props = this.props;
     return (
