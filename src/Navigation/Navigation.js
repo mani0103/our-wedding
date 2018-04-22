@@ -97,6 +97,7 @@ class Navigation extends Component {
                 {/*<MenuItem eventKey={"eng"} >English</MenuItem>*/}
                 <MenuItem eventKey={"hun"} >Magyar</MenuItem>
                 <MenuItem eventKey={"cz"} >Česky</MenuItem>
+                <MenuItem eventKey={"sk"} >Slovenský</MenuItem>
               </NavDropdown>
             </Nav>
           </Navbar>
