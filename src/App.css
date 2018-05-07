@@ -2,23 +2,23 @@
   background-image: url('./Resources/header.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
-  height: 300px;
+  height: calc(100px + (300 - 100) * ((100vw - 300px) / (1920 - 300)));;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Monotype Corsiva'; 
   color: whitesmoke;
-  font-size: 60px;
   text-align: center;
   white-space: pre-line;
+  font-size: calc(20px + (60 - 20) * ((100vw - 300px) / (1920 - 300)));
 }
 
 .container {
   font-family: 'Monotype Corsiva'; 
   text-align: center;
   color: lightslategray;
-  font-size: 30px;
+  font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1920 - 300)));
   white-space: pre-line;
   margin: 0px 0px 0px 0px;
   border: 0px 0px 0px 0px;
