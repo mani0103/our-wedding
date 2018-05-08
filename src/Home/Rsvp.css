@@ -102,8 +102,8 @@
   color: #777DA7;
   justify-content: space-between;
   padding: 5px 10px;
-  width: 300px;
-  font-size: 30px;
+  width: 1fr;
+  font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1920 - 300)));;
 }
 .list-Guest:hover {
   transition: .7s all ease;
@@ -159,12 +159,12 @@
 
 
 .comment-label {
-  font-size: 20px;
+  font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1920 - 300)));
   margin: 10px 0px 10px 0px;
 }
 
 .comment-section {
-  font-size: 20px;
+  font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1920 - 300)));
   display: flex;
   align-items: left;
   flex-direction: column;

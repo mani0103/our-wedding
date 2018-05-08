@@ -88,8 +88,9 @@ class App extends Component {
   }
 
   hideBar() {
+    let headerHeight = 100 + (300 - 100) * ((window.innerWidth - 300) / (1920 - 300));
     let { navbarFixedToTop } = this.state
-    window.scrollY > 300 ?
+    window.scrollY > headerHeight ?
       !navbarFixedToTop && this.setState({ navbarFixedToTop: true })
       :
       navbarFixedToTop && this.setState({ navbarFixedToTop: false })
@@ -110,7 +111,10 @@ class App extends Component {
         <Route exact path="/" render={() => (<Redirect to="/home" />)} />  
         <Route path="/" render={(props) => 
           <div className='header-image'>Silvia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attila</div>} />
+
         {this.state.navbarFixedToTop && <Route path="/" render={(props) => <div className='fakeNavigation'style={{height: '100px'}}/>} />}
+        {this.state.navbarFixedToTop && window.innerWidth < 740 && <Route path="/" render={(props) => <div className='fakeNavigation'style={{height: '140px'}}/>} />}
+
         <Route path="/" render={(props) => <Navigation changeLanguage={this.changeLanguage} {...props} {...commonProps}/>} />
         <Route path="/home" render={(props) => <Home  {...props}  {...commonProps}/>} />
         <Route path="/details" render={(props) => <Details text={TRANSLATIONS['detailslong'][this.state.lang]} {...props} {...commonProps} />} />

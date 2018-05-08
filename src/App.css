@@ -2,7 +2,7 @@
   background-image: url('./Resources/header.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
-  height: calc(100px + (300 - 100) * ((100vw - 300px) / (1920 - 300)));;
+  height: calc(100px + (300 - 100) * ((100vw - 300px) / (1920 - 300)));
   text-align: center;
   display: flex;
   justify-content: center;

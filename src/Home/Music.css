@@ -31,7 +31,7 @@
     padding-left: 10px;
     background: none;
     color: #E843A0;
-    font-size: 20px;
+    font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1920 - 300)));
     border: 1px solid #777DA7;
     border-radius: 2px;
 }
@@ -60,7 +60,7 @@
 .track-item {
     color: #777DA7;
     justify-content: space-between;
-    font-size: 35px;
+    font-size: calc(20px + (35 - 20) * ((100vw - 300px) / (1920 - 300)));;
   }
 .track-item:hover {
     transition: .7s all ease;

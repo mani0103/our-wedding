@@ -17,7 +17,7 @@
 
 .dropdown-menu > li {
   height: 50px;
-  font-size: 2em;
+  font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1920 - 300)));;
 
 }
 .dropdown-menu > li > a {
@@ -30,7 +30,7 @@
 nav ul li a {
   position: relative;
   color: darkslategray;
-  margin: 10px 0px;
+  margin: calc(0px + (10 - 0) * ((100vw - 300px) / (1920 - 300))) 0px;
 }
 
 
